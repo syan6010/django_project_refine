@@ -177,6 +177,33 @@
         overlayMaps[nlscmaps[i].name] = nlscmaps[i];
         }
 
+        var animal_icon = L.icon({
+            iconUrl: "{% static 'images/animal.png' %}",
+
+            iconSize:     [40, 40], // size of the icon
+            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            shadowAnchor: [4, 62],  // the same for the shadow
+            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
+
+        var plant_icon = L.icon({
+            iconUrl: "{% static 'images/plant.png' %}",
+
+            iconSize:     [40, 40], // size of the icon
+            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            shadowAnchor: [4, 62],  // the same for the shadow
+            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
+
+        var house_icon = L.icon({
+            iconUrl: "{% static 'images/house.png' %}",
+
+            iconSize:     [40, 40], // size of the icon
+            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            shadowAnchor: [4, 62],  // the same for the shadow
+            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
+
         // set up the map
         var map = new L.Map('map', {
         center: new L.LatLng(25.00067043186134, 121.57625139421589),
@@ -187,8 +214,17 @@
         .addControl(new L.Control.Layers(baseMaps, overlayMaps));
 
         {% for item in all %}  //逐筆建立地標
-            var marker = L.marker([{{ item.lat }}, {{ item.lon }}]).addTo(map);
-            marker.bindPopup("<strong>{{ item.title }}</strong> <br>種類：{{ item.type }} <br>{{ item.content }} <br> 發佈者： {{ item.username }}。<br> <img src='/media/reImg/re_{{ item.purl }}'>", { maxWidth: "auto" }).openPopup();
+            {% if item.type == "建屋"%}
+                var use_icon = house_icon;
+            {% elif item.type == "植物"%}
+                var use_icon = plant_icon;    
+            {% elif item.type == "動物"%}      
+                var use_icon = animal_icon;                
+            {% else %}     
+                var use_icon = animal_icon;   
+            {% endif%}   
+            var marker = L.marker([{{ item.lat }}, {{ item.lon }}], {icon: use_icon}).addTo(map);
+            marker.bindPopup("<strong>{{ item.title }}</strong> <br>種類：{{ item.type }} <br>{{ item.content }} <br> 發佈者： {{ item.username }}。 <br> 日期： {{ item.create_at|date:"Y / m / d" }}。<br> <img src='/media/reImg/re_{{ item.purl }}'>", { maxWidth: "auto" }).openPopup();
         {% endfor %}
 
         </script>
