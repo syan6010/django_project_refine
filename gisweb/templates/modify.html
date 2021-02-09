@@ -51,13 +51,13 @@ https://templatemo.com/tm-538-digital-trend
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/blog" class="nav-link">
+                        <a href="blog.html" class="nav-link">
                         <i class="fa fa-rss-square"></i>
                         部落格
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/map_refine" class="nav-link smoothScroll">
+                        <a href="/map" class="nav-link smoothScroll">
                         <i class="fa fa-map"></i>
                         地圖
                         </a>
@@ -65,7 +65,8 @@ https://templatemo.com/tm-538-digital-trend
                     <li class="nav-item dropdown">  <!-- 加上 dropdown, 表示擁有下一層收合展開的子選單 ********** -->
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">會員功能</a>  <!-- a連結加上 dropdown-toggle 及相關的屬性 ********** -->
                       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">  <!-- 子選單的 div ********** -->
-                        <a class="dropdown-item" href="/user_blog">我的文章</a>
+                        <a class="dropdown-item" href="#">修改</a>
+                        <a class="dropdown-item" href="#">基本資料設定</a>
                       </div>
                     </li>
                     <li class="nav-item">
@@ -87,15 +88,9 @@ https://templatemo.com/tm-538-digital-trend
 
                       <div class="col-lg-12 mx-auto col-md-7 col-12 mb-4">
                         <div class="blog-header" data-aos="fade-up" data-aos-delay="100">
-                          <img src="{% static 'images/blog/blog-header-image.jpg' %}" class="img-fluid" alt="blog header">
+                          <img src='/media/reImg/re_{{ item.purl }}' class="img-fluid" alt="blog header">
 
                           <div class="blog-header-info">
-                            <h3>
-                              <label class="btn btn-info">
-                              <input id="file" style="display:none;" type="file" name = "purl">
-                              <i class="fa fa-photo"></i> 上傳圖片
-                              </label>
-                            </h3>
                           </div>
                         </div>
                       </div>                    
@@ -104,11 +99,19 @@ https://templatemo.com/tm-538-digital-trend
 
                         <div class="row">
                           <div class="col-lg-12 col-12">
-                            <input type="text" class="form-control" name="title" placeholder="地點名稱">
+                            <input type="text" class="form-control" name="title" placeholder="地點名稱" value = {{item.title}}>
                           </div>
 
                           <div class="col-lg-12 col-12">
-                            <textarea class="form-control" rows="6" name="content" placeholder="詳細介紹"></textarea>
+                            <input type="text" class="form-control" name="lon" placeholder="經度" value = {{item.lon}}>
+                          </div>
+
+                          <div class="col-lg-12 col-12">
+                            <input type="text" class="form-control" name="lat" placeholder="緯度" value = {{item.lat}}>
+                          </div>
+
+                          <div class="col-lg-12 col-12">
+                            <textarea class="form-control" rows="6" name="content" placeholder="詳細介紹"> {{item.content}}</textarea>
                           </div>
 
                           <div class="col-lg-7 col-12">
@@ -121,7 +124,7 @@ https://templatemo.com/tm-538-digital-trend
                           </div>
 
                           <div class="col-lg-5 mx-auto col-7">
-                            <button type="submit" class="form-control" id="submit-button" name="submit">新增點位</button>
+                            <button type="submit" class="form-control" id="submit-button" name="submit">修改點位</button>
                           </div>
                         </div>
 

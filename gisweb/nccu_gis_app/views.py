@@ -172,6 +172,34 @@ def map_refine(request):
 			all = imgData.objects.all()  #取得所有景點
 		return render(request, "map_refine.html", locals())
 
+def modify(request,editid=None):  #修改景點資料
+	user_name = request.user.username
+	item = imgData.objects.get(id = editid)
+	if request.method == 'POST':
+		item.title = request.POST['title']
+		item.content = request.POST['content']
+		item.lat = request.POST['lat']
+		item.lon = request.POST['lon']
+		item.type = request.POST['type']
+		item.save()
+		return redirect('/blog/')
+	else:
+		return render(request, "modify.html", locals())
+
+def blog(request):
+	all = imgData.objects.all()  #取得所有景點
+	return render(request, "blog.html", locals())
+
+def blog_detail(request, pk):
+	item = imgData.objects.get(id = pk)
+	return render(request, "blog-detail.html", locals())
+
+
+def user_blog(request):
+	user_name = request.user.username
+	all = imgData.objects.filter(username = "{}".format(user_name))
+	return render(request, "user_blog.html", locals())
+
 # Create your views here.
 def get_exif(filename):
     image = Image.open(filename)

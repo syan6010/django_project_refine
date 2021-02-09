@@ -728,6 +728,13 @@ https://templatemo.com/tm-538-digital-trend
   }
 
 
+  img { 
+    height: 650px; 
+    width: 100%; 
+    object-fit: cover; 
+} 
+
+
 
  
  

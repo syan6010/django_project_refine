@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-     <title>部落格</title>
+     <title>Digital Trend - Blog</title>
 <!--
 
 DIGITAL TREND
@@ -34,8 +34,7 @@ https://templatemo.com/tm-538-digital-trend
         <div class="container">
             <a class="navbar-brand" href="/index">
               {% comment %} <i class="fa fa-globe"></i> {% endcomment %}
-              {% comment %} <img src="{% static 'images/nccu_logo.png' %}" /> {% endcomment %}
-              部落格
+              我的點位
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -53,21 +52,22 @@ https://templatemo.com/tm-538-digital-trend
                         {% endif %}                    
                     </li>                  
                     <li class="nav-item">
-                        <a href="#about" class="nav-link smoothScroll">介紹</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="/map_refine" class="nav-link smoothScroll">
                         <i class="fa fa-map"></i>
                         地圖
                         </a>
                     </li>
- 
+                    <li class="nav-item">
+                        <a href="\blog" class="nav-link">
+                        <i class="fa fa-rss-square"></i>
+                        部落格
+                        </a>
+                    </li>
                     {% if request.user.is_authenticated %}    
                     <li class="nav-item dropdown">  <!-- 加上 dropdown, 表示擁有下一層收合展開的子選單 ********** -->
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">會員功能</a>  <!-- a連結加上 dropdown-toggle 及相關的屬性 ********** -->
                       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">  <!-- 子選單的 div ********** -->
                         <a class="dropdown-item" href="\add">新增</a>
-                        <a class="dropdown-item" href="\user_blog">我的文章</a>
                       </div>
                     </li>
                     {% endif %}
@@ -97,7 +97,7 @@ https://templatemo.com/tm-538-digital-trend
                         <div class="blog-header-info">
                           <h4 class="blog-category text-info">{{item.type}}</h4>
 
-                        <h3><a href="/blog-detail/{{ item.id }}">{{item.title}}</a></h3>
+                        <h3><a href="/modify/{{ item.id }}">{{item.title}}</a></h3>
                         </div>
                       </div>
                     </div>
