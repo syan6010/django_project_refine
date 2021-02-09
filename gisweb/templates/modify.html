@@ -126,6 +126,9 @@ https://templatemo.com/tm-538-digital-trend
                           <div class="col-lg-5 mx-auto col-7">
                             <button type="submit" class="form-control" id="submit-button" name="submit">修改點位</button>
                           </div>
+                          {% comment %} <div class="col-lg-5 mx-auto col-7"> {% endcomment %}
+                              <a href="/modify/{{item.id}}/delete/" onClick="confirmLink('確定要刪除這張圖片嗎？'); return document.returnValue">刪除圖片</a>
+                          {% comment %} </div> {% endcomment %}
                         </div>
 
                       </form>

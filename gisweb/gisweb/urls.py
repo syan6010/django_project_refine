@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^user_blog/$',user_blog),
     url(r'^blog-detail/(\w+)$',blog_detail),
     url(r'^modify/(\w+)/$',modify),
+    url(r'^modify/(\w+)/(\w+)/$',modify),
 ]
 
 

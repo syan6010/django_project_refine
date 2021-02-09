@@ -172,7 +172,7 @@ def map_refine(request):
 			all = imgData.objects.all()  #取得所有景點
 		return render(request, "map_refine.html", locals())
 
-def modify(request,editid=None):  #修改景點資料
+def modify(request,editid=None, deletetype=None):  #修改景點資料
 	user_name = request.user.username
 	item = imgData.objects.get(id = editid)
 	if request.method == 'POST':
@@ -184,6 +184,9 @@ def modify(request,editid=None):  #修改景點資料
 		item.save()
 		return redirect('/blog/')
 	else:
+		if deletetype=='delete':  #刪除相片
+			item.delete()  #從資料庫移除
+			return redirect('/blog/')
 		return render(request, "modify.html", locals())
 
 def blog(request):
